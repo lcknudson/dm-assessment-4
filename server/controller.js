@@ -28,6 +28,15 @@ module.exports = {
         let randomEncouragement = encouragement[randomIndex];
       
         res.status(200).send(randomEncouragement);
-    }
+    }, 
+
+    // getInspiration: (req, res) => {
+    //     const inspiration = ["In order to convince and inspire others to follow and accomplish a mission, a leader must be a true believer in the mission.", "Focus on the journey, not the destination. Joy is found not in finishing an activity but in doing it.", "How wonderful it is that nobody need wait a single moment before starting to improve the world."];
+
+    //     //choose random inspiration
+    //     let randomIndex = Math.floor(Math.random() * inspiration.length);
+    //     let randomInspiration = inspiration[randomIndex];
+      
+    //     res.status(200).send(randomInspiration);    
 
 }
