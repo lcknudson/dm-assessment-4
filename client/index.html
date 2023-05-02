@@ -3,34 +3,61 @@
   <head>
     <title>Back End Assessment</title>
   </head>
-  <body class="container">
+  
+    <form action='./index.html'>
+      <input type="submit" value="Home Page" />
+  </form>
+    <!-- FEATURE 1 - GET COMPLIMENT -->
+    <br>
     <button id="complimentButton">Get a compliment</button><br><br>
+
+    <!-- FEATURE 2 - GET FORTUNE  -->
+    <!-- FEATURE 3 - GET ENCOURAGEMENT -->
     <button id="fortuneButton">Get a fortune</button> &nbsp; <button id="encouragementButton">Hover for encouragement</button><br><br>
 
     <!-- option for an input text feature -->
     <!-- <input type="text"> -->
 
-    <h1>The select element feature</h1>
+    <!-- <h1>The select element feature</h1> -->
 
     <!-- <p>The select element is used to create a drop-down list.</p> -->
 
-    <form action="/action_page.php">
-      <label for="inspiration">Choose a inspiration:</label>
-      <select name="inspiration" id="inspiration">
-        <option value="Grogu">Grogu</option>
-        <option value="Bluey">Bluey</option>
-        <option value="opel">Opel</option>
-        <option value="audi">Audi</option>
-      </select>
-      <br><br>
-      <input type="submit" value="Submit">
-    </form>
+    <!-- FEATURE 4 - DROP DOWN LIST : INCOMPLETE 4/30 NOT Working -->
 
+    <!--
+  <div>
+    <form> 
+      //action="/action_page.php"
+      <label for="inspiration">Choose inspiration:</label>
+      <select name="inspiration" id="inspirationForm">
+        <option value="">Grogu</option>
+        <option value="">Bluey</option>
+        <option value="">Smurf</option>
+        <option value="">Mater</option>
+        </select>
+      <br><br>
+      <input type="submit" value="Submit" id="inspirationSubmit">
+    </form>
+    <section id="inspiration-container"></section>
+  </div>
+    --> 
+
+    <!-- REST METHODS: NEED PUT, POST, DELETE, Incomplete 4/30 -->
     <!-- option for an form data to add/delete -->
-    <!-- 
-      <h2>Feedback</h2>
-      <div class="p-4">
-      <form id="myform">
+    
+      <h2>Inpsiration Memes, Put, Post, Delete</h2>
+      <div class="Inpsiration">
+      <form id="inspiration-form">
+        
+        <input 
+        type='text'
+        id="title"
+        placeholder="What's the Meme title?"/>
+    <input 
+        type='text'
+        id="img"
+        placeholder='Paste an image URL'/>
+    <!-- <section id="ratings-container">
         <div class="form-group">
           <label for="myform_name">Name</label>
           <input type="text" name="name" class="form-control" id="myform_name" placeholder="Your Name">
@@ -41,13 +68,16 @@
         </div>
         <div class="form-group">
           <label for="myform_message">Message</label>
-          <textarea class="form-control" name="message" id="myform_message" rows="3"></textarea>
+          <textarea class="form-control" name="message" id="myform_message" rows="3"></textarea> -->
         </div>
         
         <button type="submit" class="btn btn-primary">Submit</button>
+
+        <section id="inspiration-container"></section>
+
       </form>
       </div>
- -->
+ 
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="main.js"></script>
