@@ -17,4 +17,3 @@ app.post("/api/inspiration", createInspiration)
 app.delete("/api/inspiration/:id", deleteInspiration)
 
 app.listen(4000, () => console.log("Server running on 4000"));
-

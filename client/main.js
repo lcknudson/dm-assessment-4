@@ -2,24 +2,27 @@ const complimentBtn = document.getElementById("complimentButton")
 const fortuneBtn = document.getElementById("fortuneButton")
 const encouragementBtn = document.getElementById("encouragementButton")
 const inspirationBtn = document.getElementById("inspirationSubmit")
+const form = document.querySelector('form')
 
 const inspirationContainer = document.querySelector('#inspiration-container')
-const inspriationForm = document.querySelector('inspiration-form')
+const inspriationForm = document.querySelector('#inspiration-form')
 
 const inspirationURL = `http://localhost:4000/api/inspiration`
 
 const inspirationCallback = ({ data: inspiration }) => displayInspiration(inspiration)
-const errCallback = err => console.log(err.response.data)
-// const errCallback = err => console.log('error response issue')
+const errCallback = err => console.log(err)
 
-// const getAllInspiration = () => axios.get(inspirationURL).then(inspirationCallback).catch(errCallback)
-// const createInspirationMeme = body => axios.post(inspirationURL, body).then(inspirationCallback).catch(errCallback)
+const getAllInspiration = () => axios.get(inspirationURL).then(inspirationCallback).catch(errCallback)
 
-// const deleteInspiration = id => axios.delete(`${inspirationURL}/${id}`).then(inspirationCallback).catch(errCallback)
+const createNewInspirationMeme = body => axios.post(inspirationURL, body).then(inspirationCallback).catch(errCallback)
+
+const deleteMeme = id => axios.delete(`${inspirationURL}/${id}`).then(inspirationCallback).catch(errCallback)
+
+//Incomplete update feature
 // const updateInspiration = (id, type) => axios.put(`${inspirationURL}/${id}`, {type}).then(inspirationCallback).catch(errCallback)
 
 
-//beginnings of a dropdown feature. 
+//musings of a dropdown feature. 
 // var inspirationOptions = document.getElementById("inspirationForm")
 // var inspirationElmts = ['blank','Grogu', 'Blue', 'Smurf', 'Mater']
 
@@ -48,47 +51,57 @@ const getEncouragement = () => {
 });        
 }
 
-//Come back to this maybe .... Causing problems
-// const getInspiration = () => {
-//     // e.preventDefault(); 
-//     axios.get("http://localhost:4000/api/inspiration/")
-//     .then(res => {
-//         const data = res.data;
-//         console.log(data);
-//         // alert(data);
-//     });        
-// }
+
+function submitMemeHandler(e) {
+    e.preventDefault()
+
+    let title = document.querySelector('#title')
+    let imageURL = document.querySelector('#img')
+
+    let bodyObj = {
+        title: title.value,
+        imageURL: imageURL.value
+    }
+
+    createInspirationMeme(bodyObj)
+    createNewInspirationMeme(bodyObj)
+
+    title.value = ''
+    imageURL.value = ''
+}
+
+
+function createInspirationMeme(inspiration) {
+    const inspirationMeme = document.createElement('div')
+    inspirationMeme.classList.add('meme-card')
+
+    inspirationMeme.innerHTML = `<img alt='meme' src=${inspiration.imageURL} class="meme" width="500" height="500"/>
+    <p class="meme-title">${inspiration.title}</p>
+    <div class="btns-container">
+        
+        </div>
+    <button onclick="deleteMeme(${inspiration.id})">delete ${inspiration.title}</button> <br><br><br>
+    `
+    inspirationContainer.appendChild(inspirationMeme)
+}
+
 
 function displayInspiration(arr) {
-    inspirationContainer.innerHTML = ` `;
+    inspirationContainer.innerHTML = ``;
     for (let i = 0; i < arr.length; i++) {
         createInspirationMeme(arr[i])
     }
+    console.log(`Did display run?`)
 }
 
-//Get inpiration revised code block. 
-// function getInspiration() {
-//     e.preventDefault();  
-//     var value = e.value;
-//     var text = e.options[e.selectedIndex].text;
-//     console.log(value, text);
-// }
-
-
-// var e = document.getElementById("ddlViewBy");
-// event.preventDefault();
-// function onChange() {
-//   var value = e.value;
-//   var text = e.options[e.selectedIndex].text;
-//   console.log(value, text);
-// }
-// e.onchange = onChange;
-// onChange();
 
 complimentBtn.addEventListener('click', getCompliment)
 fortuneBtn.addEventListener('click', getFortune)
 encouragementBtn.addEventListener('mouseover', getEncouragement)
-// inspirationBtn.addEventListener('click', createInspirationMeme)
+
+
+inspriationForm.addEventListener('submit', submitMemeHandler)
 
 getAllInspiration()
 
+console.log(`This is the end.`)

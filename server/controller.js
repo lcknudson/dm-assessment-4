@@ -1,6 +1,8 @@
 let inspiration = require('../db.json')
+// let globalID = 12
 
-let nextAvailableMemeID = inspiration.length + 1
+let nextAvailableMemeID = 5
+// let nextAvailableMemeID = inspiration.length + 1
 //taking movies.length + 1 works, but the better way to do this in a live application
 // would be to loop through the array to find out the largest value and then build on that
 
@@ -42,19 +44,18 @@ module.exports = {
 
     createInspiration(req, res) {
         let { title, imageURL } = req.body;
-        if (!title || !imageURL){
-            return res.status(400).send(`Invalid request.`)
-        }
+        // if (!title || !imageURL){
+        //     return res.status(400).send(`Invalid request.`)
+        // }
 
-        const newInspiration = {
+        let newInspiration = {
             id: nextAvailableMemeID,
             title,
             imageURL
         }
 
         inspiration.push(newInspiration)
-
-        nextAvailableMemeID += 1
+        nextAvailableMemeID++
 
         res.status(200).send(inspiration)
     },
